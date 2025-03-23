@@ -3,45 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meus Áudios</title>
+    <title>Página Inicial</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 <div class="container">
     <h1>Meus Áudios</h1>
-    <div class="pastas">
-        <!-- Pasta 1 -->
-        <div class="pasta" onclick="mostrarAudios('pasta1')">
-            <h2>Pasta 1</h2>
-            <div id="pasta1-audios" class="audios">
-                <a href="audio1.html">Áudio 1</a>
-                <a href="audio2.html">Áudio 2</a>
-            </div>
-        </div>
-
-        <!-- Pasta 2 -->
-        <div class="pasta" onclick="mostrarAudios('pasta2')">
-            <h2>Pasta 2</h2>
-            <div id="pasta2-audios" class="audios">
-                <a href="audio3.html">Áudio 3</a>
-                <a href="audio4.html">Áudio 4</a>
-            </div>
-        </div>
-
-        <!-- Adicione mais pastas conforme necessário -->
-    </div>
+    <ul>
+        <li><a href="audio1.html">Áudio 1</a></li>
+        <li><a href="audio2.html">Áudio 2</a></li>
+        <!-- Adicione mais links conforme necessário -->
+    </ul>
 </div>
-
-<script>
-    // Função para mostrar/ocultar os áudios de uma pasta
-    function mostrarAudios(pasta) {
-        const audios = document.getElementById(`${pasta}-audios`);
-        if (audios.style.display === "block") {
-            audios.style.display = "none"; // Oculta os áudios
-        } else {
-            audios.style.display = "block"; // Mostra os áudios
-        }
-    }
-</script>
 </body>
 </html>
