@@ -4,20 +4,72 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Áudio Gabriela</title>
-  <link rel="stylesheet" href="styles_old.css">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 <div class="container">
-  <h1>Gabriela</h1>
-  <audio controls autoplay>
-    <source src="https://archive.org/download/gabriela-1_202503/Gabriela1.ogg" type="audio/mpeg">
-    Seu navegador não suporta o elemento de áudio.
-  </audio>
-  <div class="qrcode">
-    <img src="qrcodes/gabriela.png" alt="QR Code para Áudio 1">
-    <p>Escaneie para acessar este áudio diretamente.</p>
+  <div class="ios-warning" id="iosWarning">
+    ⚠️ Toque em qualquer lugar da tela para habilitar a reprodução dos áudios
   </div>
-  <a href="index.html">Voltar para a página inicial</a>
+
+  <h1>Gabriela</h1>
+
+  <div class="audio-container">
+    <audio id="audio1" controls>
+      <source src="./audios/Gabriela1.mp3" type="audio/mpeg">
+      <source src="./audios/Gabriela1.ogg" type="audio/ogg">
+      Seu navegador não suporta o elemento de áudio.
+    </audio>
+
+  </div>
+
+  <div class="qrcode">
+    <img src="./qrcodes/gabriela.png" alt="QR Code para Áudio Gabriela">
+    <p>Escaneie para acessar este áudio diretamente</p>
+  </div>
+
+  <a href="index.html" class="back-link">Voltar para a página inicial</a>
 </div>
+
+<script>
+  // Detectar dispositivos iOS
+  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+          (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+
+  // Elementos DOM
+  const audio1 = document.getElementById('audio1');
+  const audio2 = document.getElementById('audio2');
+  const iosWarning = document.getElementById('iosWarning');
+
+  // Configuração inicial para iOS
+  if (isIOS) {
+    iosWarning.style.display = 'block';
+    audio1.removeAttribute('autoplay');
+
+    // Habilitar reprodução após interação do usuário
+    document.body.addEventListener('touchstart', initAudio, { once: true });
+    document.body.addEventListener('click', initAudio, { once: true });
+  } else {
+    // Autoplay para outros dispositivos
+    audio1.play().catch(e => console.log("Autoplay bloqueado:", e));
+  }
+
+  // Função para inicializar áudio
+  function initAudio() {
+    iosWarning.style.display = 'none';
+    audio1.play().catch(e => console.log("Erro ao reproduzir:", e));
+  }
+
+  // Reprodução automática do segundo áudio
+  audio1.addEventListener('ended', () => {
+    audio2.play().catch(e => console.log("Erro ao reproduzir segundo áudio:", e));
+  });
+
+  // Pré-carregar áudios
+  window.addEventListener('load', () => {
+    audio1.load();
+    audio2.load();
+  });
+</script>
 </body>
 </html>

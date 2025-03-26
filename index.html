@@ -3,24 +3,98 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página Inicial</title>
-    <link rel="stylesheet" href="styles_old.css">
+    <title>Turma | Áudios dos Alunos</title>
+    <link rel="stylesheet" href="styles_index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-<div class="container">
-    <h1>Turma</h1>
-    <ul>
-        <li><a href="amanda.html">Amanda</a></li>
-        <li><a href="gabriel.html">Gabriel</a></li>
-        <li><a href="gabriela.html">Gabriela</a></li>
-        <li><a href="henrique.html">Henrique</a></li>
-        <li><a href="heytor.html">Heytor</a></li>
-        <li><a href="isadora.html">Isadora</a></li>
-        <li><a href="laura.html">Laura</a></li>
-        <li><a href="luiz_miguel.html">Luiz Miguel</a></li>
-        <li><a href="maria_alice.html">Maria Alice</a></li>
-        <li><a href="otavio.html">Otávio</a></li>
-    </ul>
+<div class="header">
+    <h1><i class="fas fa-users-class"></i> Turma Professora Carol</h1>
+    <p>Selecione um aluno para acessar os áudios</p>
 </div>
+
+<div class="student-grid">
+    <a href="amanda.html" class="student-card">
+        <div class="avatar"><i class="fas fa-user-girl"></i></div>
+        <h3>Amanda</h3>
+    </a>
+
+    <a href="gabriel.html" class="student-card">
+        <div class="avatar"><i class="fas fa-user"></i></div>
+        <h3>Gabriel</h3>
+    </a>
+
+    <a href="gabriela.html" class="student-card">
+        <div class="avatar"><i class="fas fa-user-girl"></i></div>
+        <h3>Gabriela</h3>
+    </a>
+
+    <a href="georgia.html" class="student-card">
+        <div class="avatar"><i class="fas fa-user-girl"></i></div>
+        <h3>Georgia</h3>
+    </a>
+
+    <a href="henrique.html" class="student-card">
+        <div class="avatar"><i class="fas fa-user"></i></div>
+        <h3>Henrique</h3>
+    </a>
+
+    <a href="heytor.html" class="student-card">
+        <div class="avatar"><i class="fas fa-user"></i></div>
+        <h3>Heytor</h3>
+    </a>
+
+    <a href="isadora.html" class="student-card">
+        <div class="avatar"><i class="fas fa-user-girl"></i></div>
+        <h3>Isadora</h3>
+    </a>
+
+    <a href="laura.html" class="student-card">
+        <div class="avatar"><i class="fas fa-user-girl"></i></div>
+        <h3>Laura</h3>
+    </a>
+
+    <a href="luiz_miguel.html" class="student-card">
+        <div class="avatar"><i class="fas fa-user"></i></div>
+        <h3>Luiz Miguel</h3>
+    </a>
+
+    <a href="maria_alice.html" class="student-card">
+        <div class="avatar"><i class="fas fa-user-girl"></i></div>
+        <h3>Maria Alice</h3>
+    </a>
+
+    <a href="otavio.html" class="student-card">
+        <div class="avatar"><i class="fas fa-user"></i></div>
+        <h3>Otávio</h3>
+    </a>
+
+    <a href="rebecca.html" class="student-card">
+        <div class="avatar"><i class="fas fa-user-girl"></i></div>
+        <h3>Rebecca</h3>
+    </a>
+</div>
+
+<div class="search-box">
+    <input type="text" id="searchInput" placeholder="Pesquisar aluno...">
+    <i class="fas fa-search"></i>
+</div>
+
+<footer>
+    <p>© 2025 Turma da Professora Carol | Desenvolvido com <i class="fas fa-heart"></i></p>
+</footer>
+
+<script>
+    // Função de pesquisa
+    document.getElementById('searchInput').addEventListener('input', function() {
+        const searchTerm = this.value.toLowerCase();
+        const cards = document.querySelectorAll('.student-card');
+
+        cards.forEach(card => {
+            const name = card.querySelector('h3').textContent.toLowerCase();
+            card.style.display = name.includes(searchTerm) ? 'flex' : 'none';
+        });
+    });
+</script>
 </body>
 </html>
