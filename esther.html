@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vídeo Esther</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .video-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+    }
+    video {
+      width: 100%;
+      max-width: 800px;
+      height: auto;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="ios-warning" id="iosWarning">
+    ⚠️ Toque em qualquer lugar da tela para habilitar a reprodução dos vídeos
+  </div>
+
+  <h1>Esther</h1>
+
+  <div class="video-container">
+    <video id="video1" controls>
+      <source src="./videos/Esther1.mp4" type="video/mp4">
+      <source src="./videos/Esther1.webm" type="video/webm">
+      Seu navegador não suporta o elemento de vídeo.
+    </video>
+  </div>
+
+  <div class="qrcode">
+    <img src="./qrcodes/esther.png" alt="QR Code para Vídeo Esther">
+    <p>Escaneie para acessar este vídeo diretamente</p>
+  </div>
+
+  <a href="index.html" class="back-link">Voltar para a página inicial</a>
+</div>
+
+<script>
+  // Detectar dispositivos iOS
+  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+          (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+
+  // Elementos DOM
+  const video1 = document.getElementById('video1');
+  const video2 = document.getElementById('video2');
+  const iosWarning = document.getElementById('iosWarning');
+
+  // Configuração inicial para iOS
+  if (isIOS) {
+    iosWarning.style.display = 'block';
+    video1.removeAttribute('autoplay');
+
+    // Habilitar reprodução após interação do usuário
+    document.body.addEventListener('touchstart', initVideo, { once: true });
+    document.body.addEventListener('click', initVideo, { once: true });
+  } else {
+    // Autoplay para outros dispositivos
+    video1.play().catch(e => console.log("Autoplay bloqueado:", e));
+  }
+
+  // Função para inicializar vídeo
+  function initVideo() {
+    iosWarning.style.display = 'none';
+    video1.play().catch(e => console.log("Erro ao reproduzir:", e));
+  }
+
+  // Reprodução automática do segundo vídeo
+  video1.addEventListener('ended', () => {
+    video2.play().catch(e => console.log("Erro ao reproduzir segundo vídeo:", e));
+  });
+
+  // Pré-carregar vídeos
+  window.addEventListener('load', () => {
+    video1.load();
+    video2.load();
+  });
+</script>
+</body>
+</html>
